@@ -42,3 +42,30 @@ GRANT ALL PRIVILEGES ON moodle.* TO 'moodleuser'@'localhost';
 FLUSH PRIVILEGES;
 EXIT;
 ```
+
+## 5. Configure virtual host
+
+```bash
+sudo nano /etc/apache2/sites-available/moodle.conf 
+```
+
+```conf
+<VirtualHost *:80>
+        ServerName moodle.local
+        DocumentRoot /var/www/moodle/public
+        <Directory /var/www/moodle/public>
+            AllowOverride None
+            Require all granted
+#           FallbackResource /r.php
+        </Directory>
+</VirtualHost>
+```
+
+```bash
+$ cd /etc/apache2/sites-available/
+$ sudo a2dissite 000-default
+$ sudo a2ensite moodle
+$ sudo systemctl restart apache2
+```
+
+
