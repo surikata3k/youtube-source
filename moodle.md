@@ -68,4 +68,10 @@ $ sudo a2ensite moodle
 $ sudo systemctl restart apache2
 ```
 
+## 6. Permissions
+
+```bash
+sudo chown -R www-data:www-data /var/www/moodle
+sudo chown -R www-data:www-data /var/www/moodledata
+```
 
